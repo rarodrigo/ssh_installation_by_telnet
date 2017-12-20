@@ -1,0 +1,10 @@
+---
+- name: INSTALL SSH TEMPLATE
+  ntc_config_command:
+      connection: telnet
+      platform: cisco_ios
+      host: "{{ inventory_hostname }}"
+      username: "{{ creds['username'] }}"
+      password: "{{ creds['password'] }}"
+      secret: "{{ creds['auth_pass'] }}"
+      commands_file: "/home/rodrigo/Documents/ansible/IWAN Project/ssh_installation_by_telnet/template/ssh_configuration.txt"

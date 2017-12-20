@@ -1,0 +1,19 @@
+---
+- name: INSTALL SSH IN CISCO DEVICES
+  hosts: routers-client
+  gather_facts: no
+  connection: local
+  vars:
+    template_dir: /home/rodrigo/Documents/ansible/ntc-ansible/ntc-templates/templates/
+
+  tasks:
+  - name: OBTAIN LOGIN CREDENTIALS
+    include_vars: secret.yaml
+
+  - name: INCLUDE SSH ENABLE ROLE
+    include_role:
+      name: ensure_ssh_enabled
+
+  - name: INCLUDE SSH KEY ON THE PATH .ssh/known_hosts
+    include_role:
+      name: get_ssh_key

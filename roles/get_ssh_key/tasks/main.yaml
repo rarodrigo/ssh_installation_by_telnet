@@ -1,0 +1,31 @@
+---
+- name: ACCESS BY TELNET
+  ntc_show_command:
+      connection: telnet
+      platform: cisco_ios
+      template_dir: "{{ template_dir }}"
+      command: "{{ item }}"
+      host: "{{ inventory_hostname }}"
+      username: "{{ creds['username'] }}"
+      password: "{{ creds['password'] }}"
+      secret: "{{ creds['auth_pass'] }}"
+  with_items:
+      - show ip ssh | begin ^ssh-rsa
+  register: ssh_key
+
+- name: Save output in variable related inline command
+  set_fact: myvar="{{ ssh_key.results.0.response.0 }}"
+  when: ssh_key is defined
+
+- name: Replace space inside myvar
+  set_fact:
+    clean: "{{ myvar.replace('\n','') }}"
+  when: ssh_key is defined
+
+- name: ADD KEY INSIDE LOCALHOST OF SSH CONNECTION
+  lineinfile:
+    path: ~/.ssh/known_hosts
+    state: present
+    line: "{{ ansible_host }} {{ clean }}"
+    insertafter: EOF
+  when: ssh_key is defined
