@@ -1,5 +1,5 @@
 # Executing SSH configuration via Telnet Process
-The whole process about this developer action were declared inside my [BLOC - Ansible SSH Installation](https://ciscoredes.com.br/2017/12/21/ansible-instalar-ssh-usando-processo-de-automacao).
+The whole process about this developer action were declared inside my [BLOG - Ansible SSH Installation](https://ciscoredes.com.br/2017/12/21/ansible-instalar-ssh-usando-processo-de-automacao).
 
 There are many resource used to in this script because was done with " ntc-ansible " to execute Telnet access and after that modules of Ansible, like " lineinfile ", " roles ", " conditionals "
 
