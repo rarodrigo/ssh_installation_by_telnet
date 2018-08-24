@@ -10,9 +10,13 @@
       password: "{{ creds['password'] }}"
       secret: "{{ creds['auth_pass'] }}"
   with_items:
-      - show ip ssh | include SSH Enabled - version 2
+      - show ip ssh | include SSH Enabled
   register: ssh_telnet
+
+- debug: var=ssh_telnet
 
 - name: ENABLE SSH IF REQUIRED
   include_tasks: enable_ssh.yaml
-  when: "ssh_telnet.results.0.response.0 != 'SSH Enabled - version 2.0'"
+  when: >-
+    ssh_telnet.results.0.response | length == 0 or
+    ssh_telnet.results.0.response.0 != 'SSH Enabled - version 2.0'

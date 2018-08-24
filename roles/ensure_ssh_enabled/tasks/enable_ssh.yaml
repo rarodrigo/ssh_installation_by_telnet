@@ -7,4 +7,4 @@
       username: "{{ creds['username'] }}"
       password: "{{ creds['password'] }}"
       secret: "{{ creds['auth_pass'] }}"
-      commands_file: "/home/rodrigo/Documents/ansible/IWAN Project/ssh_installation_by_telnet/template/ssh_configuration.txt"
+      commands_file: "/home/rodrigo/Documents/ansible/Project_Ansible_On-Going/ssh_installation_by_telnet/template/ssh_configuration.txt"
